@@ -2,7 +2,7 @@
 Interface for customizing the behavior of a test fixture.
 """
 
-from __future__ import absolute_import
+
 
 from ... import logging
 from ...utils import registry
@@ -22,12 +22,10 @@ def make_custom_behavior(class_name, *args, **kwargs):
     return _HOOKS[class_name](*args, **kwargs)
 
 
-class CustomBehavior(object):
+class CustomBehavior(object, metaclass=registry.make_registry_metaclass(_HOOKS)):
     """
     The common interface all CustomBehaviors will inherit from.
     """
-
-    __metaclass__ = registry.make_registry_metaclass(_HOOKS)
 
     REGISTERED_NAME = registry.LEAVE_UNREGISTERED
 

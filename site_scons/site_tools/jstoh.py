@@ -39,17 +39,17 @@ def jsToHeader(target, source):
 
     text = '\n'.join(h)
 
-    print "writing: %s" % outFile
+    print("writing: %s" % outFile)
     with open(outFile, 'wb') as out:
         try:
-            out.write(text)
+            out.write(text.encode("utf-8"))
         finally:
             out.close()
 
 
 if __name__ == "__main__":
     if len(sys.argv) < 3:
-        print "Must specify [target] [source] "
+        print("Must specify [target] [source] ")
         sys.exit(1)
 
     jsToHeader(sys.argv[1], sys.argv[2:])

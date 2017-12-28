@@ -3,7 +3,7 @@
 Script to create and boot an iOS simulator, run a program in the simulator, and clean up.
 """
 
-from __future__ import absolute_import, print_function
+
 import argparse
 import subprocess
 

@@ -5,8 +5,8 @@
 Update etc/test_lifecycle.yml to tag unreliable tests based on historic failure rates.
 """
 
-from __future__ import absolute_import
-from __future__ import division
+
+
 
 import collections
 import datetime
@@ -39,7 +39,7 @@ from buildscripts.ciconfig import tags as ci_tags
 LOGGER = logging.getLogger(__name__)
 
 if sys.version_info[0] == 2:
-    _NUMBER_TYPES = (int, long, float)
+    _NUMBER_TYPES = (int, int, float)
 else:
     _NUMBER_TYPES = (int, float)
 

@@ -15,7 +15,7 @@
 #
 """Test cases for IDL parser."""
 
-from __future__ import absolute_import, print_function, unicode_literals
+
 
 import textwrap
 import unittest

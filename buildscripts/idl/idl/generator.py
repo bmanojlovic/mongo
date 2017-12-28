@@ -15,7 +15,7 @@
 # pylint: disable=too-many-lines
 """IDL C++ Code Generator."""
 
-from __future__ import absolute_import, print_function, unicode_literals
+
 
 from abc import ABCMeta, abstractmethod
 import io
@@ -105,10 +105,8 @@ def _get_bson_type_check(bson_element, ctxt_name, field):
         return '%s.checkAndAssertTypes(%s, %s)' % (ctxt_name, bson_element, type_list)
 
 
-class _FieldUsageCheckerBase(object):
+class _FieldUsageCheckerBase(object, metaclass=ABCMeta):
     """Check for duplicate fields, and required fields as needed."""
-
-    __metaclass__ = ABCMeta
 
     def __init__(self, indented_writer):
         # type: (writer.IndentedTextWriter) -> None
@@ -1467,8 +1465,8 @@ def _generate_header(spec, file_name):
     header.generate(spec)
 
     # Generate structs
-    with io.open(file_name, mode='wb') as file_handle:
-        file_handle.write(stream.getvalue().encode())
+    with io.open(file_name, mode='w') as file_handle:
+        file_handle.write(stream.getvalue())
 
 
 def _generate_source(spec, file_name, header_file_name):
@@ -1482,8 +1480,8 @@ def _generate_source(spec, file_name, header_file_name):
     source.generate(spec, header_file_name)
 
     # Generate structs
-    with io.open(file_name, mode='wb') as file_handle:
-        file_handle.write(stream.getvalue().encode())
+    with io.open(file_name, mode='w') as file_handle:
+        file_handle.write(stream.getvalue())
 
 
 def generate_code(spec, output_base_dir, header_file_name, source_file_name):
